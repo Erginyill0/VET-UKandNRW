@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #05060a;
+}
+
+body::before {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.12;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 100% 4px;
+  mix-blend-mode: screen;
+}
+
+.hero-photo {
+  animation: slowZoom 18s ease-in-out infinite alternate;
+}
+
+.hero-photo-delay {
+  animation-delay: -8s;
+}
+
+.fade-up {
+  animation: fadeUp 900ms ease-out both;
+}
+
+.scroll-line {
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+    filter: saturate(0.95) contrast(1.05);
+  }
+  to {
+    transform: scale(1.08);
+    filter: saturate(1.25) contrast(1.12);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollLine {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scaleY(0.6);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(-50%, 12px) scaleY(1);
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
